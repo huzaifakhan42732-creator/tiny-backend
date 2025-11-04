@@ -16,7 +16,7 @@ router.post("/shorten", async (req, res) => {
     // Check if the URL already exists in the database
     let existing = await Url.findOne({ full: fullUrl });
     if (existing) {
-      return res.json({ shortUrl: `http://tiny-backend-production.up.railway.app//${existing.short}` });
+      return res.json({ shortUrl: `http://tiny-backend-production.up.railway.app/${existing.short}` });
     }
 
     
@@ -25,7 +25,7 @@ router.post("/shorten", async (req, res) => {
     const newUrl = new Url({ full: fullUrl, short });
     await newUrl.save();
 
-    res.json({ shortUrl: `http://tiny-backend-production.up.railway.app//${short}` });
+    res.json({ shortUrl: `http://tiny-backend-production.up.railway.app/${short}` });
   } catch (err) {
     console.error("❌ Error shortening URL:", err);
     res.status(500).json({ error: "Server error" });
